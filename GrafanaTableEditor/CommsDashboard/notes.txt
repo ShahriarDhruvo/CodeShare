@@ -1,0 +1,53 @@
+DB:
+CREATE TABLE CommsDashboard (
+    id SERIAL NOT NULL PRIMARY KEY,
+    created_at TIMESTAMP DEFAULT NOW(),
+    name_of_the_effort varchar(255),
+    line_of_businesses varchar(255),
+    population_type varchar(255),
+    frequency varchar(255),
+    volume varchar(255),
+    start_date timestamp,
+    end_date timestamp,
+    portals varchar(255),
+    title_months varchar(255)
+)
+
+INSERT INTO CommsDashboard (
+    name_of_the_effort,
+    line_of_businesses,
+    population_type,
+    frequency,
+    volume,
+    start_date,
+    end_date,
+    portals,
+    title_months
+) VALUES(
+    '${CD_name_of_the_effort}',
+    '${CD_line_of_businesses}',
+    '${CD_population_type}',
+    '${CD_frequency}',
+    '${CD_volume}',
+    '${CD_start_date}',
+    '${CD_end_date}',
+    '${CD_portals}',
+    '${CD_title_months}'
+)
+
+INSERT INTO CommsDashboard (
+    name_of_the_effort,
+) VALUES(
+    ${CD_name_of_the_effort},
+);
+
+Grafana Variables:
+CD_name_of_the_effort,
+CD_line_of_businesses,
+CD_population_type,
+CD_frequency,
+CD_volume,
+CD_start_date,
+CD_end_date,
+CD_portals,
+CD_title_months,
