@@ -7,6 +7,10 @@ const SSCaseId = htmlNode.getElementById("SS_case_id");
 /* Add new variables in this block */
 const SSAssignedByGrp = htmlNode.getElementById("SS_assigned_by_grp");
 const SSSocialNetworkGrp = htmlNode.getElementById("SS_social_network_grp");
+const SSDescriptionMessageGrp = htmlNode.getElementById(
+    "SS_description_message_grp"
+);
+const SSDigitalResourceGrp = htmlNode.getElementById("SS_digital_resource_grp");
 /* Add new variables in this block */
 
 const getGrafanaVariable = (variableName) => {
@@ -52,12 +56,18 @@ fetchBtn.onclick = () => {
                 SSAssignedByGrp.querySelector("input").value = fetchedData[0];
                 SSSocialNetworkGrp.querySelector("select").value =
                     fetchedData[1];
+                SSDescriptionMessageGrp.querySelector("textarea").value =
+                    fetchedData[2];
+                SSDigitalResourceGrp.querySelector("select").value =
+                    fetchedData[3];
                 /* Add new variables in this block */
 
                 // show html input fields
                 /* Add new variables in this block */
                 SSAssignedByGrp.style.display = "flex";
                 SSSocialNetworkGrp.style.display = "flex";
+                SSDescriptionMessageGrp.style.display = "flex";
+                SSDigitalResourceGrp.style.display = "flex";
                 /* Add new variables in this block */
 
                 // switch action buttons from 'Fetch Data' to 'Update Data'
@@ -91,6 +101,14 @@ submitBtn.onclick = () => {
             "USS_assigned_by",
             SSAssignedByGrp.querySelector("input").value
         );
+        updateGrafanaVariable(
+            "USS_description_message",
+            SSDescriptionMessageGrp.querySelector("textarea").value
+        );
+        updateGrafanaVariable(
+            "USS_digital_resource",
+            SSDigitalResourceGrp.querySelector("select").value
+        );
         /* Add new variables in this block */
 
         // trigger update query to DB
@@ -109,6 +127,8 @@ submitBtn.onclick = () => {
                 /* Add new variables in this block */
                 updateGrafanaVariable("USS_assigned_by", "");
                 updateGrafanaVariable("USS_social_network", "");
+                updateGrafanaVariable("USS_description_message", "");
+                updateGrafanaVariable("USS_digital_resource", "");
                 /* Add new variables in this block */
 
                 // clean html input fields to avoid showing previously fetched data
@@ -116,6 +136,8 @@ submitBtn.onclick = () => {
                 /* Add new variables in this block */
                 SSAssignedByGrp.querySelector("input").value = "";
                 SSSocialNetworkGrp.querySelector("select").value = "";
+                SSDescriptionMessageGrp.querySelector("textarea").value = "";
+                SSDigitalResourceGrp.querySelector("select").value = "";
                 /* Add new variables in this block */
 
                 SSCaseId.disabled = false;
@@ -124,6 +146,8 @@ submitBtn.onclick = () => {
                 /* Add new variables in this block */
                 SSAssignedByGrp.style.display = "none";
                 SSSocialNetworkGrp.style.display = "none";
+                SSDescriptionMessageGrp.style.display = "none";
+                SSDigitalResourceGrp.style.display = "none";
                 /* Add new variables in this block */
 
                 // hide loading
@@ -156,6 +180,8 @@ updateGrafanaVariable("USS_case_id", "");
 /* Add new variables in this block */
 updateGrafanaVariable("USS_assigned_by", "");
 updateGrafanaVariable("USS_social_network", "");
+updateGrafanaVariable("USS_description_message", "");
+updateGrafanaVariable("USS_digital_resource", "");
 /* Add new variables in this block */
 
 // hide non-initial elements
@@ -165,4 +191,6 @@ htmlNode.getElementById("submit_btn").style.display = "none";
 /* Add new variables in this block */
 htmlNode.getElementById("SS_assigned_by_grp").style.display = "none";
 htmlNode.getElementById("SS_social_network_grp").style.display = "none";
+htmlNode.getElementById("SS_description_message_grp").style.display = "none";
+htmlNode.getElementById("SS_digital_resource_grp").style.display = "none";
 /* Add new variables in this block */

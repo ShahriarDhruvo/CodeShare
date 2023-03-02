@@ -6,7 +6,11 @@ Grafana Variables:
 FSS_case_id,
 
 FSS_data:
-SELECT AssignedBy, SocialNetwork
+SELECT 
+  AssignedBy,
+  SocialNetwork,
+  DescriptionMessage,
+  DigitalResource
 FROM 
   [Daas].[dbo].[SprinklerSurveysCopy] 
 WHERE 
@@ -15,15 +19,21 @@ WHERE
 
 USS_case_id,
 
+--------- Add new variables in this block
 USS_assigned_by,
 USS_social_network,
+USS_description_message,
+USS_digital_resource,
+--------- Add new variables in this block
 
 USS_data:
 UPDATE 
   [Daas].[dbo].[SprinklerSurveysCopy] 
 SET 
   AssignedBy = '${USS_assigned_by}', 
-  SocialNetwork = '${USS_social_network}' 
+  SocialNetwork = '${USS_social_network}',
+  DescriptionMessage = '${USS_description_message}',
+  DigitalResource = '${USS_digital_resource}'
 WHERE 
   CaseId = ${USS_case_id}
 ,
@@ -33,3 +43,5 @@ HTML ids:
 SS_case_id,
 SS_assigned_by_grp,
 SS_social_network_grp,
+SS_description_message_grp,
+SS_digital_resource_grp,
