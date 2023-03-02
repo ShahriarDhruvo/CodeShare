@@ -1,0 +1,35 @@
+FSS...: Sprinkler serveys's ... to Fetch
+USS...: Sprinkler serveys's ... to Update
+
+-----------------------------------------
+Grafana Variables:
+FSS_case_id,
+
+FSS_data:
+SELECT 
+FROM 
+  [Daas].[dbo].[SprinklerServeysCopy] 
+WHERE 
+  CaseId = ${FSS_case_id}
+,
+
+USS_case_id,
+
+USS_assigned_by,
+USS_social_network,
+
+USS_data:
+UPDATE 
+  [Daas].[dbo].[SprinklerServeysCopy] 
+SET 
+  AssignedBy = '${USS_assigned_by}', 
+  SocialNetwork = '${USS_social_network}' 
+WHERE 
+  CaseId = ${USS_case_id}
+,
+
+-----------------------------------------
+HTML ids:
+SS_case_id,
+SS_social_network,
+SS_assigned_by_grp,
