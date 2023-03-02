@@ -6,7 +6,7 @@
         crossorigin="anonymous"
     />
 </head>
-<div style="min-width: 500px" class="p-4">
+<div style="min-width: 800px" class="p-4">
     <form onsubmit="return false" class="d-grid gap-3 text-center">
         <h4 class="">Social Media Care Editor (DB: Sprinkler Serveys)</h4>
 
@@ -23,19 +23,22 @@
 
         <div class="input-group" id="SS_assigned_by_grp">
             <span class="input-group-text">Assigned By</span>
-            <input
-                class="form-control"
-                style="height: 100px"
-                placeholder="Assigned By"
-            />
+            <input class="form-control" placeholder="Assigned By" />
         </div>
 
-        <select id="SS_social_network" class="form-select">
-            <option value="All">All</option>
-            <option value="Twitter">Twitter</option>
-            <option value="Facebook">Facebook</option>
-            <option value="Instagram">Instagram</option>
-        </select>
+        <div class="input-group" id="SS_social_network_grp">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">
+                    Social Network
+                </label>
+            </div>
+            <select class="form-select">
+                <option value="All">All</option>
+                <option value="Twitter">Twitter</option>
+                <option value="Facebook">Facebook</option>
+                <option value="Instagram">Instagram</option>
+            </select>
+        </div>
 
         <div id="spinner">
             <span class="spinner-border spinner-border-sm" role="status"></span>

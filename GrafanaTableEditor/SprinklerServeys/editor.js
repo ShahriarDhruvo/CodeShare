@@ -5,8 +5,8 @@ const fetchBtn = htmlNode.getElementById("fetch_btn");
 const submitBtn = htmlNode.getElementById("submit_btn");
 const SSCaseId = htmlNode.getElementById("SS_case_id");
 /* Add new variables in this block */
-const SSSocialNetwork = htmlNode.getElementById("SS_social_network");
 const SSAssignedByGrp = htmlNode.getElementById("SS_assigned_by_grp");
+const SSSocialNetworkGrp = htmlNode.getElementById("SS_social_network_grp");
 /* Add new variables in this block */
 
 const getGrafanaVariable = (variableName) => {
@@ -52,14 +52,15 @@ fetchBtn.onclick = () => {
             } else {
                 // update html fields with fetched data
                 /* Add new variables in this block */
-                SSSocialNetwork.value = fetchedData[6];
                 SSAssignedByGrp.querySelector("input").value = fetchedData[4];
+                SSSocialNetworkGrp.querySelector("select").value =
+                    fetchedData[6];
                 /* Add new variables in this block */
 
                 // show html input fields
                 /* Add new variables in this block */
-                SSSocialNetwork.style.display = "flex";
                 SSAssignedByGrp.style.display = "flex";
+                SSSocialNetworkGrp.style.display = "flex";
                 /* Add new variables in this block */
 
                 // switch action buttons from 'Fetch Data' to 'Update Data'
@@ -85,7 +86,10 @@ submitBtn.onclick = () => {
     setTimeout(() => {
         // update variables by user inputs
         /* Add new variables in this block */
-        updateGrafanaVariable("USS_social_network", SSSocialNetwork.value);
+        updateGrafanaVariable(
+            "USS_social_network",
+            SSSocialNetworkGrp.querySelector("select").value
+        );
         "USS_assigned_by",
             updateGrafanaVariable(SSAssignedByGrp.querySelector("input").value);
         /* Add new variables in this block */
@@ -111,16 +115,16 @@ submitBtn.onclick = () => {
                 // clean html input fields to avoid showing previously fetched data
                 SSCaseId.value = "";
                 /* Add new variables in this block */
-                SSSocialNetwork.value = "";
                 SSAssignedByGrp.querySelector("input").value = "";
+                SSSocialNetworkGrp.querySelector("select").value = "";
                 /* Add new variables in this block */
 
                 SSCaseId.disabled = false;
 
                 // hide all html inputs
                 /* Add new variables in this block */
-                SSSocialNetwork.style.display = "none";
                 SSAssignedByGrp.style.display = "none";
+                SSSocialNetworkGrp.style.display = "none";
                 /* Add new variables in this block */
 
                 // hide loading
@@ -134,3 +138,32 @@ submitBtn.onclick = () => {
         }, SECONDARY_TIMEOUT);
     }, SECONDARY_TIMEOUT);
 };
+
+// ---------------------------------------------------------------
+// Initial JS
+// ---------------------------------------------------------------
+const updateGrafanaVariable = (variableName, value) => {
+    htmlGraphics.locationService.partial(
+        {
+            [`var-${variableName}`]: value,
+        },
+        true
+    );
+};
+
+// clear all variables first
+updateGrafanaVariable("FSS_case_id", "");
+updateGrafanaVariable("USS_case_id", "");
+/* Add new variables in this block */
+updateGrafanaVariable("USS_assigned_by", "");
+updateGrafanaVariable("USS_social_network", "");
+/* Add new variables in this block */
+
+// hide non-initial elements
+htmlNode.getElementById("error").style.display = "none";
+htmlNode.getElementById("spinner").style.display = "none";
+htmlNode.getElementById("submit_btn").style.display = "none";
+/* Add new variables in this block */
+htmlNode.getElementById("SS_social_network").style.display = "none";
+htmlNode.getElementById("SS_assigned_by_grp").style.display = "none";
+/* Add new variables in this block */

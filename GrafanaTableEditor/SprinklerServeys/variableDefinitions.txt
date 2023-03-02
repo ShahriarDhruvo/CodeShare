@@ -31,5 +31,5 @@ WHERE
 -----------------------------------------
 HTML ids:
 SS_case_id,
-SS_social_network,
 SS_assigned_by_grp,
+SS_social_network_grp,
