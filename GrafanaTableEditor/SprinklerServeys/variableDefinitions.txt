@@ -11,7 +11,13 @@ SELECT
   AssignedBy,
   SocialNetwork,
   DescriptionMessage,
-  DigitalResource
+  DigitalResource,
+  CaseStatus,
+  CPDigitalStatus,
+  LOB,
+  MemberID,
+  MemberFullName,
+  ConsumerFeedback
 FROM 
   [Daas].[dbo].[SprinklerSurveysCopy] 
 WHERE 
@@ -25,6 +31,12 @@ USS_assigned_by,
 USS_social_network,
 USS_description_message,
 USS_digital_resource,
+USS_case_status,
+USS_cp_digital_status,
+USS_lob,
+USS_member_id,
+USS_member_full_name,
+USS_consumer_feedback
 --------- Add new variables in this block
 
 USS_data:
@@ -34,7 +46,13 @@ SET
   AssignedBy = '${USS_assigned_by}', 
   SocialNetwork = '${USS_social_network}',
   DescriptionMessage = '${USS_description_message}',
-  DigitalResource = '${USS_digital_resource}'
+  DigitalResource = '${USS_digital_resource}',
+  CaseStatus = '${USS_case_status}',
+  CPDigitalStatus = '${USS_cp_digital_status}',
+  LOB = '${USS_lob}',
+  MemberID = '${USS_member_id}',
+  MemberFullName = '${USS_member_full_name}',
+  ConsumerFeedback = '${USS_consumer_feedback}'
 WHERE 
   CaseId = ${USS_case_id}
 ,
@@ -46,3 +64,9 @@ SS_assigned_by_grp,
 SS_social_network_grp,
 SS_description_message_grp,
 SS_digital_resource_grp,
+SS_case_status_grp, --> select
+SS_cp_digital_status_grp, --> select
+SS_lob_grp, --> select
+SS_member_id_grp, --> input
+SS_member_full_name_grp, --> input
+SS_consumer_feedback_grp --> textarea

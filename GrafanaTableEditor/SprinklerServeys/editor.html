@@ -54,6 +54,81 @@
             </select>
         </div>
 
+        <div class="input-group" id="SS_case_status_grp">
+            <label class="input-group-text">Case Status</label>
+            <select class="form-select">
+                <option value="">Null</option>
+                <option value="All">All</option>
+                <option value="Closed">Closed</option>
+                <option value="Closed, Declined">Closed, Declined</option>
+                <option value="Closed, No Response Recieved">
+                    Closed, No Response Recieved
+                </option>
+                <option value="Awaiting Response">Awaiting Response</option>
+                <option value="Internal Hold">Internal Hold</option>
+                <option value="No Response Required">
+                    No Response Required
+                </option>
+            </select>
+        </div>
+
+        <div class="input-group" id="SS_cp_digital_status_grp">
+            <label class="input-group-text">CP Digital Status</label>
+            <select class="form-select">
+                <option value="">Null</option>
+                <option value="All">All</option>
+                <option value="Closed">Closed</option>
+                <option value="Closed, Declined">Closed, Declined</option>
+                <option value="Closed, No Response">Closed, No Response</option>
+                <option value="Closed, No Response Recieved">
+                    Closed, No Response Recieved
+                </option>
+                <option value="Awaiting Response">Awaiting Response</option>
+                <option value="Internal Hold">Internal Hold</option>
+                <option value="No Response Required">
+                    No Response Required
+                </option>
+
+                <option value="Work In Progress">Work In Progress</option>
+                <option
+                    value="Reassigned To Operations - No Member Information"
+                >
+                    Reassigned To Operations - No Member Information
+                </option>
+            </select>
+        </div>
+
+        <div class="input-group" id="SS_lob_grp">
+            <label class="input-group-text">LOB</label>
+            <select class="form-select">
+                <option value="All">All</option>
+                <option value="E&I">E&I</option>
+                <option value="M&R">M&R</option>
+                <option value="C&S">C&S</option>
+                <option value="IFP">IFP</option>
+                <option value="Mobile">Mobile</option>
+            </select>
+        </div>
+
+        <div class="input-group" id="SS_member_id_grp">
+            <span class="input-group-text">Member ID</span>
+            <input type="number" class="form-control" placeholder="Member ID" />
+        </div>
+
+        <div class="input-group" id="SS_member_full_name_grp">
+            <span class="input-group-text">Member Full Name</span>
+            <input class="form-control" placeholder="Member Full Name" />
+        </div>
+
+        <div class="input-group" id="SS_consumer_feedback_grp">
+            <span class="input-group-text">Consumer Feedback</span>
+            <textarea
+                class="form-control"
+                style="height: 100px"
+                placeholder="Consumer Feedback"
+            ></textarea>
+        </div>
+
         <div id="spinner">
             <span class="spinner-border spinner-border-sm" role="status"></span>
             <span>Loading</span>
