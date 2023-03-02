@@ -42,9 +42,6 @@ fetchBtn.onclick = () => {
             // get all data which has been fetched from the DB
             const fetchedData = JSON.parse(getGrafanaVariable("FSS_data"));
 
-            console.log(fetchedData, "SED");
-            // return;
-
             // if it's less or equal to zero then that means that record doesn't exist against that ID
             if (fetchedData.length === 0) {
                 SSCaseId.disabled = false;
@@ -52,9 +49,9 @@ fetchBtn.onclick = () => {
             } else {
                 // update html fields with fetched data
                 /* Add new variables in this block */
-                SSAssignedByGrp.querySelector("input").value = fetchedData[4];
+                SSAssignedByGrp.querySelector("input").value = fetchedData[0];
                 SSSocialNetworkGrp.querySelector("select").value =
-                    fetchedData[6];
+                    fetchedData[1];
                 /* Add new variables in this block */
 
                 // show html input fields
@@ -90,8 +87,10 @@ submitBtn.onclick = () => {
             "USS_social_network",
             SSSocialNetworkGrp.querySelector("select").value
         );
-        "USS_assigned_by",
-            updateGrafanaVariable(SSAssignedByGrp.querySelector("input").value);
+        updateGrafanaVariable(
+            "USS_assigned_by",
+            SSAssignedByGrp.querySelector("input").value
+        );
         /* Add new variables in this block */
 
         // trigger update query to DB
@@ -164,6 +163,6 @@ htmlNode.getElementById("error").style.display = "none";
 htmlNode.getElementById("spinner").style.display = "none";
 htmlNode.getElementById("submit_btn").style.display = "none";
 /* Add new variables in this block */
-htmlNode.getElementById("SS_social_network").style.display = "none";
 htmlNode.getElementById("SS_assigned_by_grp").style.display = "none";
+htmlNode.getElementById("SS_social_network_grp").style.display = "none";
 /* Add new variables in this block */

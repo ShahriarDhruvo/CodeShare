@@ -6,9 +6,9 @@ Grafana Variables:
 FSS_case_id,
 
 FSS_data:
-SELECT 
+SELECT AssignedBy, SocialNetwork
 FROM 
-  [Daas].[dbo].[SprinklerServeysCopy] 
+  [Daas].[dbo].[SprinklerSurveysCopy] 
 WHERE 
   CaseId = ${FSS_case_id}
 ,
@@ -20,7 +20,7 @@ USS_social_network,
 
 USS_data:
 UPDATE 
-  [Daas].[dbo].[SprinklerServeysCopy] 
+  [Daas].[dbo].[SprinklerSurveysCopy] 
 SET 
   AssignedBy = '${USS_assigned_by}', 
   SocialNetwork = '${USS_social_network}' 
