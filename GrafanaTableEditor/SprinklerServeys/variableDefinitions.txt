@@ -6,7 +6,8 @@ Grafana Variables:
 FSS_case_id,
 
 FSS_data:
-SELECT 
+SELECT
+  CaseId,
   AssignedBy,
   SocialNetwork,
   DescriptionMessage,

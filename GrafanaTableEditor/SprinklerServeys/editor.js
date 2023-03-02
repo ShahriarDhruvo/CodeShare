@@ -1,4 +1,5 @@
 const TIMEOUT = 2000;
+const NON_EXISTING_PK = -1;
 const SECONDARY_TIMEOUT = 500;
 const loader = htmlNode.getElementById("spinner");
 const fetchBtn = htmlNode.getElementById("fetch_btn");
@@ -47,19 +48,19 @@ fetchBtn.onclick = () => {
             const fetchedData = JSON.parse(getGrafanaVariable("FSS_data"));
 
             // if it's less or equal to zero then that means that record doesn't exist against that ID
-            if (fetchedData.length === 0) {
+            if (fetchedData.length === 0 && fetchedData[0] !== SSCaseId.value) {
                 SSCaseId.disabled = false;
                 htmlNode.getElementById("error").style.display = "block";
             } else {
                 // update html fields with fetched data
                 /* Add new variables in this block */
-                SSAssignedByGrp.querySelector("input").value = fetchedData[0];
+                SSAssignedByGrp.querySelector("input").value = fetchedData[1];
                 SSSocialNetworkGrp.querySelector("select").value =
-                    fetchedData[1];
-                SSDescriptionMessageGrp.querySelector("textarea").value =
                     fetchedData[2];
-                SSDigitalResourceGrp.querySelector("select").value =
+                SSDescriptionMessageGrp.querySelector("textarea").value =
                     fetchedData[3];
+                SSDigitalResourceGrp.querySelector("select").value =
+                    fetchedData[4];
                 /* Add new variables in this block */
 
                 // show html input fields
@@ -88,7 +89,7 @@ submitBtn.onclick = () => {
     loader.style.display = "inline-block";
 
     // to prevent accidentaly updating info by previous ID
-    updateGrafanaVariable("USS_case_id", "");
+    updateGrafanaVariable("USS_case_id", NON_EXISTING_PK);
 
     setTimeout(() => {
         // update variables by user inputs
@@ -122,8 +123,8 @@ submitBtn.onclick = () => {
             setTimeout(() => {
                 // clear all variable to avoid any unnecessary bugs and
                 // to force fetching new data from DB in next trigger
-                updateGrafanaVariable("FSS_case_id", "");
-                updateGrafanaVariable("USS_case_id", "");
+                updateGrafanaVariable("FSS_case_id", NON_EXISTING_PK);
+                updateGrafanaVariable("USS_case_id", NON_EXISTING_PK);
                 /* Add new variables in this block */
                 updateGrafanaVariable("USS_assigned_by", "");
                 updateGrafanaVariable("USS_social_network", "");
@@ -175,8 +176,8 @@ const updateGrafanaVariable = (variableName, value) => {
 };
 
 // clear all variables first
-updateGrafanaVariable("FSS_case_id", "");
-updateGrafanaVariable("USS_case_id", "");
+updateGrafanaVariable("FSS_case_id", NON_EXISTING_PK);
+updateGrafanaVariable("USS_case_id", NON_EXISTING_PK);
 /* Add new variables in this block */
 updateGrafanaVariable("USS_assigned_by", "");
 updateGrafanaVariable("USS_social_network", "");
