@@ -103,7 +103,7 @@ const toggleView = (show) => {
 
     // switch action button's view
     fetchBtn.style.display = show ? "none" : "block";
-    actionBtnGrp.style.display = show ? "block" : "none";
+    actionBtnGrp.style.display = show ? "flex" : "none";
 };
 
 const updateFromInputField = () => {
@@ -150,28 +150,35 @@ const updateFromInputField = () => {
 
 const fillInputField = () => {
     /* Add new variables in this block */
-    SSAssignedByGrp.querySelector("input").value =
-        getGrafanaVariable("FSS_assigned_by");
-    SSSocialNetworkGrp.querySelector("select").value =
-        getGrafanaVariable("FSS_social_network");
-    SSDescriptionMessageGrp.querySelector("textarea").value =
-        getGrafanaVariable("FSS_description_message");
-    SSDigitalResourceGrp.querySelector("select").value = getGrafanaVariable(
-        "FSS_digital_resource"
+    SSAssignedByGrp.querySelector("input").value = JSON.parse(
+        getGrafanaVariable("FSS_assigned_by")
     );
-    SSCaseStatusGrp.querySelector("select").value =
-        getGrafanaVariable("FSS_case_status");
-    SSCPDigitalStatusGrp.querySelector("select").value = getGrafanaVariable(
-        "FSS_cp_digital_status"
+    SSSocialNetworkGrp.querySelector("select").value = JSON.parse(
+        getGrafanaVariable("FSS_social_network")
     );
-    SSLobGrp.querySelector("select").value = getGrafanaVariable("FSS_lob");
-    SSMemberIdGrp.querySelector("input").value =
-        getGrafanaVariable("FSS_member_id");
-    SSMemberFullNameGrp.querySelector("input").value = getGrafanaVariable(
-        "FSS_member_full_name"
+    SSDescriptionMessageGrp.querySelector("textarea").value = JSON.parse(
+        getGrafanaVariable("FSS_description_message")
     );
-    SSConsumerFeedbackGrp.querySelector("textarea").value = getGrafanaVariable(
-        "FSS_consumer_feedback"
+    SSDigitalResourceGrp.querySelector("select").value = JSON.parse(
+        getGrafanaVariable("FSS_digital_resource")
+    );
+    SSCaseStatusGrp.querySelector("select").value = JSON.parse(
+        getGrafanaVariable("FSS_case_status")
+    );
+    SSCPDigitalStatusGrp.querySelector("select").value = JSON.parse(
+        getGrafanaVariable("FSS_cp_digital_status")
+    );
+    SSLobGrp.querySelector("select").value = JSON.parse(
+        getGrafanaVariable("FSS_lob")
+    );
+    SSMemberIdGrp.querySelector("input").value = JSON.parse(
+        getGrafanaVariable("FSS_member_id")
+    );
+    SSMemberFullNameGrp.querySelector("input").value = JSON.parse(
+        getGrafanaVariable("FSS_member_full_name")
+    );
+    SSConsumerFeedbackGrp.querySelector("textarea").value = JSON.parse(
+        getGrafanaVariable("FSS_consumer_feedback")
     );
     /* Add new variables in this block */
 };
@@ -260,6 +267,7 @@ submitBtn.onclick = () => {
 cancelBtn.onclick = () => {
     toggleView(false);
     clearHTMLFields();
+    SSCaseId.disabled = false;
 };
 
 // ---------------------------------------------------------------
