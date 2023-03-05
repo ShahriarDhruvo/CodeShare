@@ -5,6 +5,21 @@ USS...: Sprinkler serveys's ... to Update
 Grafana Variables:
 FSS_case_id,
 
+--------- Add new variables in this block
+FSS_case_id_recheck: SELECT CaseId FROM [Daas].[dbo].[SprinklerSurveysCopy] WHERE CaseId = ${FSS_case_id},
+FSS_assigned_by: SELECT AssignedBy FROM [Daas].[dbo].[SprinklerSurveysCopy] WHERE CaseId = ${FSS_case_id},
+FSS_social_network: SELECT SocialNetwork FROM [Daas].[dbo].[SprinklerSurveysCopy] WHERE CaseId = ${FSS_case_id},
+FSS_description_message: SELECT DescriptionMessage FROM [Daas].[dbo].[SprinklerSurveysCopy] WHERE CaseId = ${FSS_case_id},
+FSS_digital_resource: SELECT DigitalResource FROM [Daas].[dbo].[SprinklerSurveysCopy] WHERE CaseId = ${FSS_case_id},
+FSS_case_status: SELECT CaseStatus FROM [Daas].[dbo].[SprinklerSurveysCopy] WHERE CaseId = ${FSS_case_id},
+FSS_cp_digital_status: SELECT CPDigitalStatus FROM [Daas].[dbo].[SprinklerSurveysCopy] WHERE CaseId = ${FSS_case_id},
+FSS_lob: SELECT LOB FROM [Daas].[dbo].[SprinklerSurveysCopy] WHERE CaseId = ${FSS_case_id},
+FSS_member_id: SELECT MemberID FROM [Daas].[dbo].[SprinklerSurveysCopy] WHERE CaseId = ${FSS_case_id},
+FSS_member_full_name: SELECT MemberFullName FROM [Daas].[dbo].[SprinklerSurveysCopy] WHERE CaseId = ${FSS_case_id},
+FSS_consumer_feedback: SELECT ConsumerFeedback FROM [Daas].[dbo].[SprinklerSurveysCopy] WHERE CaseId = ${FSS_case_id},
+--------- Add new variables in this block
+
+--------- Deprecated
 FSS_data:
 SELECT
   CaseId,
@@ -23,6 +38,7 @@ FROM
 WHERE 
   CaseId = ${FSS_case_id}
 ,
+--------- Deprecated
 
 USS_case_id,
 

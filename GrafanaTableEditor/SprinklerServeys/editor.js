@@ -4,6 +4,8 @@ const SECONDARY_TIMEOUT = 500;
 const loader = htmlNode.getElementById("spinner");
 const fetchBtn = htmlNode.getElementById("fetch_btn");
 const submitBtn = htmlNode.getElementById("submit_btn");
+const cancelBtn = htmlNode.getElementById("cancel_btn");
+const actionBtnGrp = htmlNode.getElementById("action_btn_grp");
 const SSCaseId = htmlNode.getElementById("SS_case_id");
 /* Add new variables in this block */
 const SSAssignedByGrp = htmlNode.getElementById("SS_assigned_by_grp");
@@ -37,6 +39,143 @@ const updateGrafanaVariable = (variableName, value) => {
     );
 };
 
+const clearGrafanaVariables = () => {
+    updateGrafanaVariable("FSS_case_id", DUMMY_PK);
+    updateGrafanaVariable("USS_case_id", DUMMY_PK);
+
+    /* Add new variables in this block */
+    updateGrafanaVariable("FSS_case_id_recheck", DUMMY_PK);
+    updateGrafanaVariable("FSS_assigned_by", "");
+    updateGrafanaVariable("FSS_social_network", "");
+    updateGrafanaVariable("FSS_description_message", "");
+    updateGrafanaVariable("FSS_digital_resource", "");
+    updateGrafanaVariable("FSS_case_status", "");
+    updateGrafanaVariable("FSS_cp_digital_status", "");
+    updateGrafanaVariable("FSS_lob", "");
+    updateGrafanaVariable("FSS_member_id", "");
+    updateGrafanaVariable("FSS_member_full_name", "");
+    updateGrafanaVariable("FSS_consumer_feedback", "");
+
+    updateGrafanaVariable("USS_assigned_by", "");
+    updateGrafanaVariable("USS_social_network", "");
+    updateGrafanaVariable("USS_description_message", "");
+    updateGrafanaVariable("USS_digital_resource", "");
+    updateGrafanaVariable("USS_case_status", "");
+    updateGrafanaVariable("USS_cp_digital_status", "");
+    updateGrafanaVariable("USS_lob", "");
+    updateGrafanaVariable("USS_member_id", "");
+    updateGrafanaVariable("USS_member_full_name", "");
+    updateGrafanaVariable("USS_consumer_feedback", "");
+    /* Add new variables in this block */
+};
+
+const clearHTMLFields = () => {
+    SSCaseId.value = "";
+    /* Add new variables in this block */
+    SSAssignedByGrp.querySelector("input").value = "";
+    SSSocialNetworkGrp.querySelector("select").value = "";
+    SSDescriptionMessageGrp.querySelector("textarea").value = "";
+    SSDigitalResourceGrp.querySelector("select").value = "";
+    SSCaseStatusGrp.querySelector("select").value = "";
+    SSCPDigitalStatusGrp.querySelector("select").value = "";
+    SSLobGrp.querySelector("select").value = "";
+    SSMemberIdGrp.querySelector("input").value = "";
+    SSMemberFullNameGrp.querySelector("input").value = "";
+    SSConsumerFeedbackGrp.querySelector("textarea").value = "";
+    /* Add new variables in this block */
+};
+
+const toggleView = (show) => {
+    const display = show ? "flex" : "none";
+
+    /* Add new variables in this block */
+    SSAssignedByGrp.style.display = display;
+    SSSocialNetworkGrp.style.display = display;
+    SSDescriptionMessageGrp.style.display = display;
+    SSDigitalResourceGrp.style.display = display;
+    SSCaseStatusGrp.style.display = display;
+    SSCPDigitalStatusGrp.style.display = display;
+    SSLobGrp.style.display = display;
+    SSMemberIdGrp.style.display = display;
+    SSMemberFullNameGrp.style.display = display;
+    SSConsumerFeedbackGrp.style.display = display;
+    /* Add new variables in this block */
+
+    // switch action button's view
+    fetchBtn.style.display = show ? "none" : "block";
+    actionBtnGrp.style.display = show ? "block" : "none";
+};
+
+const updateFromInputField = () => {
+    /* Add new variables in this block */
+    updateGrafanaVariable(
+        "USS_social_network",
+        SSSocialNetworkGrp.querySelector("select").value
+    );
+    updateGrafanaVariable(
+        "USS_assigned_by",
+        SSAssignedByGrp.querySelector("input").value
+    );
+    updateGrafanaVariable(
+        "USS_description_message",
+        SSDescriptionMessageGrp.querySelector("textarea").value
+    );
+    updateGrafanaVariable(
+        "USS_digital_resource",
+        SSDigitalResourceGrp.querySelector("select").value
+    );
+    updateGrafanaVariable(
+        "USS_case_status",
+        SSCaseStatusGrp.querySelector("select").value
+    );
+    updateGrafanaVariable(
+        "USS_cp_digital_status",
+        SSCPDigitalStatusGrp.querySelector("select").value
+    );
+    updateGrafanaVariable("USS_lob", SSLobGrp.querySelector("select").value);
+    updateGrafanaVariable(
+        "USS_member_id",
+        SSMemberIdGrp.querySelector("input").value
+    );
+    updateGrafanaVariable(
+        "USS_member_full_name",
+        SSMemberFullNameGrp.querySelector("input").value
+    );
+    updateGrafanaVariable(
+        "USS_consumer_feedback",
+        SSConsumerFeedbackGrp.querySelector("textarea").value
+    );
+    /* Add new variables in this block */
+};
+
+const fillInputField = () => {
+    /* Add new variables in this block */
+    SSAssignedByGrp.querySelector("input").value =
+        getGrafanaVariable("FSS_assigned_by");
+    SSSocialNetworkGrp.querySelector("select").value =
+        getGrafanaVariable("FSS_social_network");
+    SSDescriptionMessageGrp.querySelector("textarea").value =
+        getGrafanaVariable("FSS_description_message");
+    SSDigitalResourceGrp.querySelector("select").value = getGrafanaVariable(
+        "FSS_digital_resource"
+    );
+    SSCaseStatusGrp.querySelector("select").value =
+        getGrafanaVariable("FSS_case_status");
+    SSCPDigitalStatusGrp.querySelector("select").value = getGrafanaVariable(
+        "FSS_cp_digital_status"
+    );
+    SSLobGrp.querySelector("select").value = getGrafanaVariable("FSS_lob");
+    SSMemberIdGrp.querySelector("input").value =
+        getGrafanaVariable("FSS_member_id");
+    SSMemberFullNameGrp.querySelector("input").value = getGrafanaVariable(
+        "FSS_member_full_name"
+    );
+    SSConsumerFeedbackGrp.querySelector("textarea").value = getGrafanaVariable(
+        "FSS_consumer_feedback"
+    );
+    /* Add new variables in this block */
+};
+
 fetchBtn.onclick = () => {
     if (SSCaseId.value === "") {
         htmlNode.getElementById("error").style.display = "block";
@@ -54,51 +193,20 @@ fetchBtn.onclick = () => {
 
         // wait for the data to be fetched from the DB
         setTimeout(() => {
-            // get all data which has been fetched from the DB
-            const fetchedData = JSON.parse(getGrafanaVariable("FSS_data"));
+            const rchkId = JSON.parse(
+                getGrafanaVariable("FSS_case_id_recheck")
+            );
 
-            // if it's less or equal to zero then that means that record doesn't exist against that ID
-            if (fetchedData.length === 0 && fetchedData[0] !== SSCaseId.value) {
+            // if it's equal to "" then that means that record doesn't exist against that ID
+            if (rchkId === "" && rchkId !== SSCaseId.value) {
                 SSCaseId.disabled = false;
                 htmlNode.getElementById("error").style.display = "block";
             } else {
                 // update html fields with fetched data
-                /* Add new variables in this block */
-                SSAssignedByGrp.querySelector("input").value = fetchedData[1];
-                SSSocialNetworkGrp.querySelector("select").value =
-                    fetchedData[2];
-                SSDescriptionMessageGrp.querySelector("textarea").value =
-                    fetchedData[3];
-                SSDigitalResourceGrp.querySelector("select").value =
-                    fetchedData[4];
-                SSCaseStatusGrp.querySelector("select").value = fetchedData[5];
-                SSCPDigitalStatusGrp.querySelector("select").value =
-                    fetchedData[6];
-                SSLobGrp.querySelector("select").value = fetchedData[7];
-                SSMemberIdGrp.querySelector("input").value = fetchedData[8];
-                SSMemberFullNameGrp.querySelector("input").value =
-                    fetchedData[9];
-                SSConsumerFeedbackGrp.querySelector("textarea").value =
-                    fetchedData[10];
-                /* Add new variables in this block */
+                fillInputField();
 
                 // show html input fields
-                /* Add new variables in this block */
-                SSAssignedByGrp.style.display = "flex";
-                SSSocialNetworkGrp.style.display = "flex";
-                SSDescriptionMessageGrp.style.display = "flex";
-                SSDigitalResourceGrp.style.display = "flex";
-                SSCaseStatusGrp.style.display = "flex";
-                SSCPDigitalStatusGrp.style.display = "flex";
-                SSLobGrp.style.display = "flex";
-                SSMemberIdGrp.style.display = "flex";
-                SSMemberFullNameGrp.style.display = "flex";
-                SSConsumerFeedbackGrp.style.display = "flex";
-                /* Add new variables in this block */
-
-                // switch action buttons from 'Fetch Data' to 'Update Data'
-                fetchBtn.style.display = "none";
-                submitBtn.style.display = "block";
+                toggleView(true);
             }
 
             // enable button & hide loading
@@ -111,6 +219,7 @@ fetchBtn.onclick = () => {
 submitBtn.onclick = () => {
     // disable button & show loading
     submitBtn.disabled = true;
+    cancelBtn.disabled = true;
     loader.style.display = "inline-block";
 
     // to prevent accidentaly updating info by previous ID
@@ -118,48 +227,7 @@ submitBtn.onclick = () => {
 
     setTimeout(() => {
         // update variables by user inputs
-        /* Add new variables in this block */
-        updateGrafanaVariable(
-            "USS_social_network",
-            SSSocialNetworkGrp.querySelector("select").value
-        );
-        updateGrafanaVariable(
-            "USS_assigned_by",
-            SSAssignedByGrp.querySelector("input").value
-        );
-        updateGrafanaVariable(
-            "USS_description_message",
-            SSDescriptionMessageGrp.querySelector("textarea").value
-        );
-        updateGrafanaVariable(
-            "USS_digital_resource",
-            SSDigitalResourceGrp.querySelector("select").value
-        );
-        updateGrafanaVariable(
-            "USS_case_status",
-            SSCaseStatusGrp.querySelector("select").value
-        );
-        updateGrafanaVariable(
-            "USS_cp_digital_status",
-            SSCPDigitalStatusGrp.querySelector("select").value
-        );
-        updateGrafanaVariable(
-            "USS_lob",
-            SSLobGrp.querySelector("select").value
-        );
-        updateGrafanaVariable(
-            "USS_member_id",
-            SSMemberIdGrp.querySelector("input").value
-        );
-        updateGrafanaVariable(
-            "USS_member_full_name",
-            SSMemberFullNameGrp.querySelector("input").value
-        );
-        updateGrafanaVariable(
-            "USS_consumer_feedback",
-            SSConsumerFeedbackGrp.querySelector("textarea").value
-        );
-        /* Add new variables in this block */
+        updateFromInputField();
 
         // trigger update query to DB
         setTimeout(() => {
@@ -172,99 +240,38 @@ submitBtn.onclick = () => {
             setTimeout(() => {
                 // clear all variable to avoid any unnecessary bugs and
                 // to force fetching new data from DB in next trigger
-                // updateGrafanaVariable("FSS_data", "");
-                updateGrafanaVariable("FSS_case_id", DUMMY_PK);
-                updateGrafanaVariable("USS_case_id", DUMMY_PK);
-                /* Add new variables in this block */
-                updateGrafanaVariable("USS_assigned_by", "");
-                updateGrafanaVariable("USS_social_network", "");
-                updateGrafanaVariable("USS_description_message", "");
-                updateGrafanaVariable("USS_digital_resource", "");
-                updateGrafanaVariable("USS_case_status", "");
-                updateGrafanaVariable("USS_cp_digital_status", "");
-                updateGrafanaVariable("USS_lob", "");
-                updateGrafanaVariable("USS_member_id", "");
-                updateGrafanaVariable("USS_member_full_name", "");
-                updateGrafanaVariable("USS_consumer_feedback", "");
-                /* Add new variables in this block */
-
-                // clean html input fields to avoid showing previously fetched data
-                SSCaseId.value = "";
-                /* Add new variables in this block */
-                SSAssignedByGrp.querySelector("input").value = "";
-                SSSocialNetworkGrp.querySelector("select").value = "";
-                SSDescriptionMessageGrp.querySelector("textarea").value = "";
-                SSDigitalResourceGrp.querySelector("select").value = "";
-                SSCaseStatusGrp.querySelector("select").value = "";
-                SSCPDigitalStatusGrp.querySelector("select").value = "";
-                SSLobGrp.querySelector("select").value = "";
-                SSMemberIdGrp.querySelector("input").value = "";
-                SSMemberFullNameGrp.querySelector("input").value = "";
-                SSConsumerFeedbackGrp.querySelector("textarea").value = "";
-                /* Add new variables in this block */
+                clearGrafanaVariables();
+                clearHTMLFields();
 
                 SSCaseId.disabled = false;
 
                 // hide all html inputs
-                /* Add new variables in this block */
-                SSAssignedByGrp.style.display = "none";
-                SSSocialNetworkGrp.style.display = "none";
-                SSDescriptionMessageGrp.style.display = "none";
-                SSDigitalResourceGrp.style.display = "none";
-                SSCaseStatusGrp.style.display = "none";
-                SSCPDigitalStatusGrp.style.display = "none";
-                SSLobGrp.style.display = "none";
-                SSMemberIdGrp.style.display = "none";
-                SSMemberFullNameGrp.style.display = "none";
-                SSConsumerFeedbackGrp.style.display = "none";
-                /* Add new variables in this block */
+                toggleView(false);
 
                 // hide loading
                 submitBtn.disabled = false;
+                cancelBtn.disabled = false;
                 loader.style.display = "none";
-
-                // switch action buttons from 'Update Data' to 'Fetch Data'
-                fetchBtn.style.display = "block";
-                submitBtn.style.display = "none";
             }, TIMEOUT);
         }, SECONDARY_TIMEOUT);
     }, SECONDARY_TIMEOUT);
 };
 
+cancelBtn.onclick = () => {
+    toggleView(false);
+    clearHTMLFields();
+};
+
 // ---------------------------------------------------------------
 // Initial JS
 // ---------------------------------------------------------------
-const DUMMY_PK = -1;
-
-const updateGrafanaVariable = (variableName, value) => {
-    htmlGraphics.locationService.partial(
-        {
-            [`var-${variableName}`]: value,
-        },
-        true
-    );
-};
-
 // clear all variables first
-updateGrafanaVariable("FSS_case_id", DUMMY_PK);
-updateGrafanaVariable("USS_case_id", DUMMY_PK);
-/* Add new variables in this block */
-updateGrafanaVariable("USS_assigned_by", "");
-updateGrafanaVariable("USS_social_network", "");
-updateGrafanaVariable("USS_description_message", "");
-updateGrafanaVariable("USS_digital_resource", "");
-updateGrafanaVariable("USS_case_status", "");
-updateGrafanaVariable("USS_cp_digital_status", "");
-updateGrafanaVariable("USS_lob", "");
-updateGrafanaVariable("USS_member_id", "");
-updateGrafanaVariable("USS_member_full_name", "");
-updateGrafanaVariable("USS_consumer_feedback", "");
-/* Add new variables in this block */
+clearGrafanaVariables();
 
 // hide non-initial elements
 htmlNode.getElementById("error").style.display = "none";
 htmlNode.getElementById("spinner").style.display = "none";
-htmlNode.getElementById("submit_btn").style.display = "none";
+htmlNode.getElementById("action_btn_grp").style.display = "none";
 /* Add new variables in this block */
 htmlNode.getElementById("SS_assigned_by_grp").style.display = "none";
 htmlNode.getElementById("SS_social_network_grp").style.display = "none";
