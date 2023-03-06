@@ -10,7 +10,6 @@ const volume = htmlNode.getElementById("volume");
 const startDate = htmlNode.getElementById("start_date");
 const endDate = htmlNode.getElementById("end_date");
 const portals = htmlNode.getElementById("portals");
-const titleMonths = htmlNode.getElementById("title_months");
 /* Add new variables in this block */
 
 const updateGrafanaVariable = (variableName, value) => {
@@ -25,14 +24,12 @@ const updateGrafanaVariable = (variableName, value) => {
 const clearHTMLInput = () => {
     /* Add new variables in this block */
     nameOfTheEffort.querySelector("input").value = "";
-    lineOfBusinesses.querySelector("input").value = "";
     populationType.querySelector("input").value = "";
     frequency.querySelector("input").value = "";
     volume.querySelector("input").value = "";
     startDate.querySelector("input").value = "";
     endDate.querySelector("input").value = "";
     portals.querySelector("input").value = "";
-    titleMonths.querySelector("input").value = "";
     /* Add new variables in this block */
 };
 
@@ -47,7 +44,7 @@ const updateFormInputField = () => {
     );
     updateGrafanaVariable(
         "CD_line_of_businesses",
-        lineOfBusinesses.querySelector("input").value
+        lineOfBusinesses.querySelector("select").value
     );
     updateGrafanaVariable(
         "CD_population_type",
@@ -61,10 +58,6 @@ const updateFormInputField = () => {
     updateGrafanaVariable("CD_start_date", sd[0] + " " + sd[1]);
     updateGrafanaVariable("CD_end_date", ed[0] + " " + ed[1]);
     updateGrafanaVariable("CD_portals", portals.querySelector("input").value);
-    updateGrafanaVariable(
-        "CD_title_months",
-        titleMonths.querySelector("input").value
-    );
     /* Add new variables in this block */
 };
 
@@ -72,14 +65,12 @@ submitBtn.onclick = () => {
     if (
         /* Add new variables in this block */
         nameOfTheEffort.querySelector("input").value === "" ||
-        lineOfBusinesses.querySelector("input").value === "" ||
         populationType.querySelector("input").value === "" ||
         frequency.querySelector("input").value === "" ||
         volume.querySelector("input").value === "" ||
         startDate.querySelector("input").value === "" ||
         endDate.querySelector("input").value === "" ||
         portals.querySelector("input").value === ""
-        // titleMonths.querySelector("input").value === ""
         /* Add new variables in this block */
     ) {
         htmlNode.getElementById("error").style.display = "block";
@@ -100,4 +91,3 @@ submitBtn.onclick = () => {
 // ---------------------------------------------------------------
 htmlNode.getElementById("error").style.display = "none";
 htmlNode.getElementById("spinner").style.display = "none";
-htmlNode.getElementById("title_months").style.display = "none";

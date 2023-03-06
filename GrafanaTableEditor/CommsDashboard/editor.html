@@ -20,12 +20,14 @@
         </div>
 
         <div class="input-group" id="line_of_businesses">
-            <span class="input-group-text">Line of Businesses</span>
-            <input
-                required
-                class="form-control"
-                placeholder="Line of Businesses"
-            />
+            <label class="input-group-text">Line of Businesses</label>
+            <select class="form-select">
+                <option selected value="All">All</option>
+                <option value="E&I">E&I</option>
+                <option value="M&R">M&R</option>
+                <option value="C&S">C&S</option>
+                <option value="IFP">IFP</option>
+            </select>
         </div>
 
         <div class="input-group" id="population_type">
@@ -70,11 +72,6 @@
         <div class="input-group" id="portals">
             <span class="input-group-text">Portals</span>
             <input required class="form-control" placeholder="Portals" />
-        </div>
-
-        <div class="input-group" id="title_months">
-            <span class="input-group-text">Title Months</span>
-            <input required class="form-control" placeholder="Title Months" />
         </div>
 
         <div id="spinner">
