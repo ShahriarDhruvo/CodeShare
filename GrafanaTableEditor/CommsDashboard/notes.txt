@@ -29,10 +29,24 @@ INSERT INTO CommsDashboard (
     '${CD_population_type}',
     '${CD_frequency}',
     '${CD_volume}',
-    CONVERT('${CD_start_date}','18-06-12 10:34:09 PM', 5),
-    CONVERT('${CD_end_date}','18-06-12 10:34:09 PM', 5),
+    '${CD_start_date}',
+    '${CD_end_date}',
     '${CD_portals}',
     '${CD_title_months}'
+)
+
+INSERT INTO CommsDashboard (
+    name_of_the_effort,
+    line_of_businesses,
+    population_type,
+    frequency,
+    volume,
+    start_date,
+    end_date,
+    portals,
+    title_months
+) VALUES(
+    ${CD_data}
 )
 
 INSERT INTO CommsDashboard (
